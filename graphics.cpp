@@ -12,7 +12,7 @@ Graphics::~Graphics(){
 }
 
 void Graphics::clear() {
-	SDL_SetRenderDrawColor(_render, 0xff, 0x00, 0x00, 0xff);
+	SDL_SetRenderDrawColor(_render, 0x00, 0x00, 0x00, 0xff);
 	SDL_RenderClear(_render);
 }
 

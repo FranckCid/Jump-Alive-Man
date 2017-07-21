@@ -9,7 +9,7 @@ void GameObject::start(){
 }
 
 void GameObject::update(Input& input, float elapsedTime){
-	float spd = 3.0f * elapsedTime;
+	float spd = 1.0f * elapsedTime;
 	std::cout << elapsedTime << std::endl;
 	if(input.isKeyHold(SDL_SCANCODE_LEFT)){
 		transform.pos.x -= spd;

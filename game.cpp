@@ -2,11 +2,6 @@
 #include "gameobject.h"
 #include "input.h"
 
-namespace {
-	const int FPS = 50;
-	const int MAX_FRAME_TIME = 1000/FPS;
-}
-
 Game::Game()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -24,13 +19,19 @@ void Game::loop(){
 	SDL_Event evnt;
 	bool running = true;
 
-	int LAST_UPDATE_TIME = SDL_GetTicks();
+	Uint64 NOW = 0, LAST = 0;
+	double deltaTime = 0;
 
 	for(auto &o : _objs){
 		o->start();
 	}
 	while(running){
 		input.newFrame();
+
+		LAST = NOW;
+		NOW = SDL_GetPerformanceCounter();
+
+		deltaTime = (double)((NOW - LAST) * 1000 / SDL_GetPerformanceFrequency());
 
 		while(SDL_PollEvent(&evnt)){
 			switch(evnt.type){
@@ -46,11 +47,7 @@ void Game::loop(){
 			}
 		}
 
-		const int CURRENT_TIME_MS = SDL_GetTicks();
-		int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
-
-		this->update(input, std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME));
-		LAST_UPDATE_TIME = CURRENT_TIME_MS;
+		this->update(input, deltaTime);
 		this->draw(g);
 	}
 }
