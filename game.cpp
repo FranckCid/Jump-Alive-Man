@@ -1,5 +1,5 @@
 #include "game.h"
-#include "gameobject.h"
+#include "player.h"
 #include "input.h"
 
 Game::Game()
@@ -10,7 +10,7 @@ Game::Game()
 }
 
 void Game::loadScene(){
-	_objs.push_back(std::make_shared<GameObject>());
+	_objs.push_back(std::make_shared<Player>());
 }
 
 void Game::loop(){

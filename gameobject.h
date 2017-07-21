@@ -7,9 +7,9 @@
 
 class GameObject{
 public:
-	virtual void start();
-	virtual void update(Input&, float);
-	virtual void draw(Graphics&);
+	virtual void start() = 0;
+	virtual void update(Input&, float) = 0;
+	virtual void draw(Graphics&) = 0;
 protected:
 	Transform transform;
 };
