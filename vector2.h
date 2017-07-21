@@ -4,6 +4,7 @@
 template <typename T> 
 class __Vector2{
 public:
+	__Vector2() : x(0), y(0){}
 	__Vector2(T a, T b) : x(a), y(b){}
 	__Vector2(const __Vector2&v) : __Vector2(v.x, v.y){}
 	__Vector2& operator+=(const __Vector2&v){
