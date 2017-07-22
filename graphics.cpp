@@ -27,3 +27,8 @@ void Graphics::rect(int x, int y, int w, int h){
 	const SDL_Rect rect = {x, y, w, h};
 	SDL_RenderFillRect(_render, &rect);
 }
+
+void Graphics::point(int x, int y){
+	SDL_SetRenderDrawColor(_render, 0x00, 0xff, 0x00, 0xff);
+	SDL_RenderDrawPoint(_render, x, y);
+}

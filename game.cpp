@@ -1,6 +1,4 @@
 #include "game.h"
-#include "player.h"
-#include "input.h"
 
 Game::Game()
 {
@@ -10,7 +8,12 @@ Game::Game()
 }
 
 void Game::loadScene(){
+	//Objects
 	_objs.push_back(std::make_shared<Player>());
+	_objs.push_back(std::make_shared<Tile>());
+	//Physics
+	//_physicalObjs.push_back(std::make_shared<PhysicalGameObject>(_objs[0]));
+	//_physicalObjs.push_back(_objs[1]);
 }
 
 void Game::loop(){
@@ -54,6 +57,11 @@ void Game::loop(){
 
 void Game::update(Input& input, float delta){
 	delta /= 10;
+	/*for(auto &o : _physicalObjs){
+		for(auto &c : _physicalObjs){
+			o->checkCollisionWith(*c);
+		}
+*	}*/
 	for(auto &o : _objs){
 		o->update(input, delta);
 	}

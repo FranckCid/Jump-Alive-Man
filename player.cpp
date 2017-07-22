@@ -6,9 +6,14 @@ void Player::start(){
 	transform.pos.y = 100;
 	transform.scale.x = 10;
 	transform.scale.y = 10;
+
+	collider.transform.scale = transform.scale;
 }
 
 void Player::update(Input& input, float elapsedTime){
+
+	collider.transform.pos = transform.pos;
+
 	float spd = 1.0f * elapsedTime;
 	std::cout << elapsedTime << std::endl;
 	if(input.isKeyHold(SDL_SCANCODE_LEFT)){
@@ -27,4 +32,10 @@ void Player::update(Input& input, float elapsedTime){
 
 void Player::draw(Graphics&g){
 	g.rect(transform.pos.x, transform.pos.y, transform.scale.x, transform.scale.y);
+}
+
+void Player::checkCollisionWith(PhysicalGameObject&obj){
+	if(collider.rect(obj.transform)){
+		std::cout << "ASD" << std::endl;
+	}
 }

@@ -11,6 +11,7 @@ public:
 	void flip();
 	//Draw functions
 	void rect(int x, int y, int w, int h);
+	void point(int x, int y);
 private:
 	SDL_Window* _window;
 	SDL_Renderer *_render;

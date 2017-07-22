@@ -7,11 +7,11 @@
 
 class GameObject{
 public:
-	virtual void start() = 0;
-	virtual void update(Input&, float) = 0;
-	virtual void draw(Graphics&) = 0;
-protected:
+	virtual void start()=0;
+	virtual void update(Input&, float)=0;
+	virtual void draw(Graphics&)=0;
 	Transform transform;
+protected:
 };
 
 #endif
