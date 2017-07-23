@@ -9,10 +9,11 @@ Game::Game()
 
 void Game::loadScene(){
 	//Objects
-	_objs.push_back(std::make_shared<Player>());
-	_objs.push_back(std::make_shared<Tile>());
+	//_objs.push_back(std::make_shared<Player>());
+	//_objs.push_back(std::make_shared<Tile>());
 	//Physics
-	//_physicalObjs.push_back(std::make_shared<PhysicalGameObject>(_objs[0]));
+	_physicalObjs.push_back(std::make_shared<Player>());
+	_physicalObjs.push_back(std::make_shared<Tile>());
 	//_physicalObjs.push_back(_objs[1]);
 }
 
@@ -27,6 +28,9 @@ void Game::loop(){
 
 	for(auto &o : _objs){
 		o->start();
+	}
+	for(auto &p : _physicalObjs){
+		p->start();
 	}
 	while(running){
 		input.newFrame();
@@ -65,6 +69,13 @@ void Game::update(Input& input, float delta){
 	for(auto &o : _objs){
 		o->update(input, delta);
 	}
+	for(auto &p : _physicalObjs){
+		for(auto &p2 : _physicalObjs){			
+			if(p != p2)
+				p->checkCollisionWith(*p2);
+		}
+		p->update(input, delta);
+	}
 }
 
 void Game::draw(Graphics &g){
@@ -72,6 +83,9 @@ void Game::draw(Graphics &g){
 
 	for(auto &o : _objs){
 		o->draw(g);
+	}
+	for(auto &p : _physicalObjs){
+		p->draw(g);
 	}
 
 	g.flip();

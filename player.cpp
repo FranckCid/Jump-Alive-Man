@@ -36,6 +36,6 @@ void Player::draw(Graphics&g){
 
 void Player::checkCollisionWith(PhysicalGameObject&obj){
 	if(collider.rect(obj.transform)){
-		std::cout << "ASD" << std::endl;
+		std::cout << "Player coolided with obj" << std::endl;
 	}
 }
